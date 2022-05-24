@@ -8,20 +8,36 @@ const { getService } = require('../utils');
 
 module.exports = {
   async create(ctx) {
-    const { name, description, permissions } = ctx.request.body;
+    const { body } = ctx.request;
 
     const roleService = getService('role');
 
-    const role = await roleService.create({
-      name,
-      description,
-      permissions,
-    });
+    const role = await roleService.create(body);
 
-    const sanitizedRole = roleService.sanitize(role);
+    const sanitizedRole = roleService.sanitizeRole(role);
 
     ctx.body = {
       data: sanitizedRole,
+    };
+  },
+
+  async deleteMany(ctx) {
+    const { ids } = ctx.request.body;
+
+    const roleService = getService('role');
+
+    ids.forEach(async id => {
+      const role = await roleService.findOne({ id });
+
+      if (role.code === SUPER_ADMIN_CODE) {
+        throw new ApplicationError("Super admin can't be edited.");
+      }
+    });
+
+    const roles = await roleService.deleteByIds(ids);
+
+    ctx.body = {
+      data: roles,
     };
   },
 

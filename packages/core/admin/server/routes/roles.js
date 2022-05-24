@@ -75,4 +75,12 @@ module.exports = [
       ],
     },
   },
+  {
+    method: 'POST',
+    path: '/roles/batch-delete',
+    handler: 'role.deleteMany',
+    config: {
+      policies: [{ name: 'admin::hasPermissions', config: { actions: ['admin::roles.delete'] } }],
+    },
+  },
 ];
