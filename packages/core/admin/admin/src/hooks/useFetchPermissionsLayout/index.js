@@ -12,15 +12,26 @@ const useFetchPermissionsLayout = id => {
         type: 'GET_DATA',
       });
 
-      const { data } = await request('/admin/permissions', {
-        method: 'GET',
-        params: { role: id },
-      });
+      if (id) {
+        const { data } = await request('/admin/permissions', {
+          method: 'GET',
+          params: { role: id },
+        });
 
-      dispatch({
-        type: 'GET_DATA_SUCCEEDED',
-        data,
-      });
+        dispatch({
+          type: 'GET_DATA_SUCCEEDED',
+          data,
+        });
+      } else {
+        const { data } = await request('/admin/permissions', {
+          method: 'GET',
+        });
+
+        dispatch({
+          type: 'GET_DATA_SUCCEEDED',
+          data,
+        });
+      }
     };
 
     getData();

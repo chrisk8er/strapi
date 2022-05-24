@@ -7,6 +7,24 @@ const { EDITOR_CODE, AUTHOR_CODE, SUPER_ADMIN_CODE } = require('../services/cons
 const { getService } = require('../utils');
 
 module.exports = {
+  async create(ctx) {
+    const { name, description, permissions } = ctx.request.body;
+
+    const roleService = getService('role');
+
+    const role = await roleService.create({
+      name,
+      description,
+      permissions,
+    });
+
+    const sanitizedRole = roleService.sanitize(role);
+
+    ctx.body = {
+      data: sanitizedRole,
+    };
+  },
+
   /**
    * Returns on role by id
    * @param {KoaContext} ctx - koa context
