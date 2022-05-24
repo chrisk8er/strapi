@@ -13,7 +13,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import LeftMenu from '../../components/LeftMenu';
 import AppLayout from '../../layouts/AppLayout';
 import { useMenu } from '../../hooks';
-import Onboarding from './Onboarding';
+// import Onboarding from './Onboarding';
 import { createRoute } from '../../utils';
 import GuidedTourModal from '../../components/GuidedTour/Modal';
 
@@ -92,7 +92,7 @@ const Admin = () => {
           </Switch>
         </Suspense>
         <GuidedTourModal />
-        <Onboarding />
+        {/* <Onboarding /> */}
       </AppLayout>
     </DndProvider>
   );

@@ -8,11 +8,11 @@ import appReducers from './reducers';
 
 window.strapi = {
   backendURL: process.env.STRAPI_ADMIN_BACKEND_URL,
-  isEE: false,
+  isEE: true,
   features: {
     SSO: 'sso',
   },
-  projectType: 'Community',
+  projectType: 'Enterprise',
 };
 
 const customConfig = appCustomisations;
@@ -30,18 +30,20 @@ const run = async () => {
   try {
     const {
       data: {
-        data: { isEE, features },
+        data: { features },
       },
     } = await axiosInstance.get('/admin/project-type');
 
-    window.strapi.isEE = isEE;
+    // window.strapi.isEE = isEE;
+    window.strapi.isEE = true;
     window.strapi.features = {
       ...window.strapi.features,
       allFeatures: features,
       isEnabled: f => features.includes(f),
     };
 
-    window.strapi.projectType = isEE ? 'Enterprise' : 'Community';
+    // window.strapi.projectType = isEE ? 'Enterprise' : 'Community';
+    window.strapi.projectType = 'Enterprise';
   } catch (err) {
     console.error(err);
   }
