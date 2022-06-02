@@ -54,7 +54,8 @@ module.exports = {
     const autoReload = strapi.config.get('autoReload', false);
     const strapiVersion = strapi.config.get('info.strapi', null);
     const nodeVersion = process.version;
-    const communityEdition = !strapi.EE;
+    // const communityEdition = !strapi.EE;
+    const communityEdition = false;
     const useYarn = await exists(path.join(process.cwd(), 'yarn.lock'));
 
     return {
