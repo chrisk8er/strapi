@@ -16,8 +16,8 @@ import { Grid, GridItem } from '@strapi/design-system/Grid';
 import { Typography } from '@strapi/design-system/Typography';
 import { Stack } from '@strapi/design-system/Stack';
 import { Button } from '@strapi/design-system/Button';
-import { Link } from '@strapi/design-system/v2/Link';
-import ExternalLink from '@strapi/icons/ExternalLink';
+// import { Link } from '@strapi/design-system/v2/Link';
+// import ExternalLink from '@strapi/icons/ExternalLink';
 import Check from '@strapi/icons/Check';
 import { useConfigurations } from '../../../../hooks';
 import Form from './components/Form';
@@ -34,7 +34,11 @@ const ApplicationInfosPage = () => {
   const queryClient = useQueryClient();
   useFocusWhenNavigate();
   const appInfos = useAppInfos();
-  const { shouldUpdateStrapi, latestStrapiReleaseTag, strapiVersion } = appInfos;
+  const {
+    // shouldUpdateStrapi,
+    // latestStrapiReleaseTag,
+    strapiVersion,
+  } = appInfos;
   const { updateProjectSettings } = useConfigurations();
 
   const { data } = useQuery('project-settings', fetchProjectSettings);
@@ -115,7 +119,7 @@ const ApplicationInfosPage = () => {
                       })}
                     </Typography>
                     <Typography as="p">v{strapiVersion}</Typography>
-                    <Link
+                    {/* <Link
                       href={
                         appInfos.communityEdition
                           ? 'https://discord.strapi.io'
@@ -128,7 +132,7 @@ const ApplicationInfosPage = () => {
                         id: 'Settings.application.get-help',
                         defaultMessage: 'Get help',
                       })}
-                    </Link>
+                    </Link> */}
                   </GridItem>
                   <GridItem col={6} s={12}>
                     <Typography variant="sigma" textColor="neutral600">
@@ -150,7 +154,7 @@ const ApplicationInfosPage = () => {
 
                 <Grid paddingTop={1}>
                   <GridItem col={6} s={12}>
-                    {shouldUpdateStrapi && (
+                    {/* {shouldUpdateStrapi && (
                       <Link
                         href={`https://github.com/strapi/strapi/releases/tag/${latestStrapiReleaseTag}`}
                         isExternal
@@ -161,10 +165,10 @@ const ApplicationInfosPage = () => {
                           defaultMessage: 'Upgrade your admin panel',
                         })}
                       </Link>
-                    )}
+                    )} */}
                   </GridItem>
                   <GridItem col={6} s={12}>
-                    <Link
+                    {/* <Link
                       href="https://strapi.io/pricing-self-hosted"
                       isExternal
                       endIcon={<ExternalLink />}
@@ -173,7 +177,7 @@ const ApplicationInfosPage = () => {
                         id: 'Settings.application.link-pricing',
                         defaultMessage: 'See all pricing plans',
                       })}
-                    </Link>
+                    </Link> */}
                   </GridItem>
                 </Grid>
 

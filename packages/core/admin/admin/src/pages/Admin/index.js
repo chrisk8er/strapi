@@ -16,7 +16,7 @@ import AppLayout from '../../layouts/AppLayout';
 import { useMenu } from '../../hooks';
 import { createRoute } from '../../utils';
 import { SET_APP_RUNTIME_STATUS } from '../App/constants';
-import Onboarding from './Onboarding';
+// import Onboarding from './Onboarding';
 
 const CM = lazy(() =>
   import(/* webpackChunkName: "content-manager" */ '../../content-manager/pages/App')
@@ -106,7 +106,7 @@ const Admin = () => {
           </Switch>
         </Suspense>
         <GuidedTourModal />
-        <Onboarding />
+        {/* <Onboarding /> */}
       </AppLayout>
     </DndProvider>
   );
